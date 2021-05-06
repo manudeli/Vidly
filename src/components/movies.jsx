@@ -70,7 +70,13 @@ export default class Movies extends Component {
 
   render() {
     const { length: count } = this.state.movies;
-    const { pageSize, currentPage, genres, sortColumn } = this.state;
+    const {
+      pageSize,
+      currentPage,
+      genres,
+      sortColumn,
+      selectedGenre,
+    } = this.state;
 
     if (count === 0) return <p>There are no movies in the database.</p>;
 
