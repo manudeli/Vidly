@@ -4,7 +4,7 @@ const movies = [
   {
     _id: "5b21ca3eeb7f6fbccd471815",
     title: "Terminator",
-    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
+    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "액션" },
     numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2018-01-03T19:04:28.809Z",
@@ -13,56 +13,56 @@ const movies = [
   {
     _id: "5b21ca3eeb7f6fbccd471816",
     title: "Die Hard",
-    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
+    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "액션" },
     numberInStock: 5,
     dailyRentalRate: 2.5,
   },
   {
     _id: "5b21ca3eeb7f6fbccd471817",
     title: "Get Out",
-    genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
+    genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "스릴러" },
     numberInStock: 8,
     dailyRentalRate: 3.5,
   },
   {
     _id: "5b21ca3eeb7f6fbccd471819",
     title: "Trip to Italy",
-    genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
+    genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "코미디" },
     numberInStock: 7,
     dailyRentalRate: 3.5,
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181a",
     title: "Airplane",
-    genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
+    genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "코미디" },
     numberInStock: 7,
     dailyRentalRate: 3.5,
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181b",
     title: "Wedding Crashers",
-    genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
+    genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "코미디" },
     numberInStock: 7,
     dailyRentalRate: 3.5,
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181e",
     title: "Gone Girl",
-    genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
+    genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "스릴러" },
     numberInStock: 7,
     dailyRentalRate: 4.5,
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181f",
     title: "The Sixth Sense",
-    genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
+    genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "스릴러" },
     numberInStock: 4,
     dailyRentalRate: 3.5,
   },
   {
     _id: "5b21ca3eeb7f6fbccd471821",
     title: "The Avengers",
-    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
+    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "액션" },
     numberInStock: 7,
     dailyRentalRate: 3.5,
   },
@@ -78,13 +78,13 @@ export function getMovie(id) {
 
 export function saveMovie(movie) {
   let movieInDb = movies.find((m) => m._id === movie._id) || {};
-  movieInDb.name = movie.name;
+  movieInDb.title = movie.title;
   movieInDb.genre = genresAPI.genres.find((g) => g._id === movie.genreId);
   movieInDb.numberInStock = movie.numberInStock;
   movieInDb.dailyRentalRate = movie.dailyRentalRate;
 
   if (!movieInDb._id) {
-    movieInDb._id = Date.now();
+    movieInDb._id = Date.now().toString();
     movies.push(movieInDb);
   }
 
