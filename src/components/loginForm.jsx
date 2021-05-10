@@ -1,6 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
+import { login } from "../services/authService";
 
 export default class LoginForm extends Form {
   state = {
@@ -13,17 +14,30 @@ export default class LoginForm extends Form {
     password: Joi.string().required().label("비밀번호"),
   };
 
-  doSubmit = () => {
-    // Call the server
-    console.log("Submitted");
+  doSubmit = async () => {
+    try {
+      const { data } = this.state;
+      const { data: jwt } = await login(data.username, data.password);
+      localStorage.setItem("token", jwt);
+      window.location = "/";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.username = ex.response.data;
+        this.setState({ errors });
+      }
+    }
   };
 
   render() {
     return (
       <div>
         <h1>
-          비디오를
-          <br />전 세계 어디에서든 대여하세요 🌎
+          로그인하셔서
+          <br />
+          가장 쉬운 비디오 대여를
+          <br />
+          체험하세요 🌎
         </h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "아이디")}
