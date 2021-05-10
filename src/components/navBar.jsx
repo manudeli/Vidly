@@ -7,18 +7,7 @@ export default function NavBar({ user }) {
       <Link className="navbar-brand" to="/">
         <span style={{ fontSize: 40 }}>📼</span>
       </Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
+      <div className=" navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <NavLink className="nav-link" to="/movies">
             영화
