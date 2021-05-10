@@ -102,6 +102,8 @@ export default class Movies extends Component {
       selectedGenre,
     } = this.state;
 
+    const { user } = this.props;
+
     if (count === 0) return <p>There are no movies in the database.</p>;
 
     const { totalCount, data: movies } = this.getPagedData();
@@ -116,14 +118,19 @@ export default class Movies extends Component {
           />
         </div>
         <div className="col">
-          <Link
-            to="/movies/new"
-            className="btn btn-primary"
-            style={{ marginBottom: 20 }}
-          >
-            영화 추가하기
-          </Link>
-          <p> Showing {totalCount} movies in the database. </p>
+          {user && (
+            <Link
+              to="/movies/new"
+              className="btn btn-primary"
+              style={{ marginBottom: 20 }}
+            >
+              영화 추가하기
+            </Link>
+          )}
+          <p>
+            영화 <strong>{totalCount}편</strong>이 당신의 선택을 기다리고
+            있습니다.
+          </p>
 
           <SearchBox
             value={this.state.searchQuery}
